@@ -97,7 +97,7 @@ public final class Constants {
     // Arm Encoder Port
     public static final int armEncoderPortA = 0;
     public static final int armEncoderPortB = 1;
-    public static final int armEncoderPortS = 2;
+    public static final int armEncoderPortS = 2; //This is never used 
 
     public static final int rightMotorOneID = 19;
     public static final int rightMotorTwoID = 20;

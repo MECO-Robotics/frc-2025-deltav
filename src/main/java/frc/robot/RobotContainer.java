@@ -63,8 +63,8 @@ public class RobotContainer {
         private final LEDSubsystem led = new LEDSubsystem();
 
         // The robot's subsystems and commands are defined here...
-        private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
-                        "swerve/neo"));
+        //private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
+                        //"swerve/neo"));
 
         DoubleSupplier armAimAngle = () -> SmartDashboard.getNumber("Arm Aim Angle", 0);
 
@@ -132,37 +132,37 @@ public class RobotContainer {
                 // SmartDashboard.putData("4 note(3 close) middle auto", autoCommandChoice);
                 // SmartDashboard.putData("4 note(3 close) bottom auto", autoCommandChoice);
 
-                AbsoluteDrive closedAbsoluteDrive = new AbsoluteDrive(drivebase,
+               // AbsoluteDrive closedAbsoluteDrive = new AbsoluteDrive(drivebase,
                                 // Applies deadbands and inverts controls because joysticks
                                 // are back-right positive while robot
                                 // controls are front-left positive
-                                () -> MathUtil.applyDeadband(-pilotController.getLeftY(),
-                                                OperatorConstants.LEFT_Y_DEADBAND),
-                                () -> MathUtil.applyDeadband(-pilotController.getLeftX(),
-                                                OperatorConstants.LEFT_X_DEADBAND),
-                                () -> -pilotController.getRightX(),
-                                () -> -pilotController.getRightY());
+                              //  () -> MathUtil.applyDeadband(-pilotController.getLeftY(),
+                              //                  OperatorConstants.LEFT_Y_DEADBAND),
+                               // () -> MathUtil.applyDeadband(-pilotController.getLeftX(),
+                               //                 OperatorConstants.LEFT_X_DEADBAND),
+                               // () -> -pilotController.getRightX(),
+                                //() -> -pilotController.getRightY());
 
-                AbsoluteFieldDrive closedFieldAbsoluteDrive = new AbsoluteFieldDrive(drivebase,
-                                () -> MathUtil.applyDeadband(pilotController.getLeftY(),
-                                                OperatorConstants.LEFT_Y_DEADBAND),
-                                () -> MathUtil.applyDeadband(pilotController.getLeftX(),
-                                                OperatorConstants.LEFT_X_DEADBAND),
-                                () -> pilotController.getRawAxis(2));
+            //    AbsoluteFieldDrive closedFieldAbsoluteDrive = new AbsoluteFieldDrive(drivebase,
+             //                   () -> MathUtil.applyDeadband(pilotController.getLeftY(),
+             //                                   OperatorConstants.LEFT_Y_DEADBAND),
+             //                   () -> MathUtil.applyDeadband(pilotController.getLeftX(),
+             //                                   OperatorConstants.LEFT_X_DEADBAND),
+             //                   () -> pilotController.getRawAxis(2));
+//
+               // AbsoluteDriveAdv closedAbsoluteDriveAdv = new AbsoluteDriveAdv(drivebase,
+              //                  () -> MathUtil.applyDeadband(pilotController.getLeftY(),
+              //                                  OperatorConstants.LEFT_Y_DEADBAND),
+               //                 () -> MathUtil.applyDeadband(pilotController.getLeftX(),
+              //                                  OperatorConstants.LEFT_X_DEADBAND),
+              //                  () -> MathUtil.applyDeadband(pilotController.getRightX(),
+              //                                  OperatorConstants.RIGHT_X_DEADBAND),
+             //                   pilotController::getYButtonPressed,
+              //                  pilotController::getAButtonPressed,
+              //                  pilotController::getXButtonPressed,
+              //                  pilotController::getBButtonPressed);
 
-                AbsoluteDriveAdv closedAbsoluteDriveAdv = new AbsoluteDriveAdv(drivebase,
-                                () -> MathUtil.applyDeadband(pilotController.getLeftY(),
-                                                OperatorConstants.LEFT_Y_DEADBAND),
-                                () -> MathUtil.applyDeadband(pilotController.getLeftX(),
-                                                OperatorConstants.LEFT_X_DEADBAND),
-                                () -> MathUtil.applyDeadband(pilotController.getRightX(),
-                                                OperatorConstants.RIGHT_X_DEADBAND),
-                                pilotController::getYButtonPressed,
-                                pilotController::getAButtonPressed,
-                                pilotController::getXButtonPressed,
-                                pilotController::getBButtonPressed);
-
-                TeleopDrive simClosedFieldRel = new TeleopDrive(drivebase,
+              /*   TeleopDrive simClosedFieldRel = new TeleopDrive(drivebase,
                                 () -> MathUtil.applyDeadband(-pilotController.getLeftY(),
                                                 OperatorConstants.LEFT_Y_DEADBAND),
                                 () -> MathUtil.applyDeadband(-pilotController.getLeftX(),
@@ -176,14 +176,14 @@ public class RobotContainer {
                                 () -> MathUtil.applyDeadband(-pilotCommandController.getLeftX(),
                                                 OperatorConstants.LEFT_X_DEADBAND),
                                 () -> -pilotController.getRightX(), () -> true);
-
+*/
                 // ManualArmControlCommand manualArm = new ManualArmControlCommand(armSubsystem,
                 // () -> MathUtil.applyDeadband(coPilotController.getRightY() * -12, 0.01));
 
                 // Configure the trigger bindingss
                 configureBindings();
 
-                drivebase.setDefaultCommand(closedFieldRel);
+            /*     drivebase.setDefaultCommand(closedFieldRel);
 
                 intakeSubsystem.setDefaultCommand(
                                 new NoAutomationIntakieCommand(intakeSubsystem,
@@ -196,7 +196,7 @@ public class RobotContainer {
 
                 // armSubsystem.setDefaultCommand(new SetPointControlCommand(armSubsystem, () ->
                 // SmartDashboard.getNumber("Arm Setpoint", 0)));
-
+*/
         }
 
         /**
@@ -237,7 +237,7 @@ public class RobotContainer {
 
                 pilotCommandController.leftBumper().onTrue(new HandoffCommand(indexingSubsystem, intakeSubsystem, led));
 
-                pilotCommandController.y().onTrue((new InstantCommand(drivebase::zeroGyro)));
+           //     pilotCommandController.y().onTrue((new InstantCommand(drivebase::zeroGyro)));
 
                 pilotCommandController.povDown().onTrue(new SetPointControlCommand(armSubsystem,
                                 Constants.Arm.SetPointPositions.kStowPosition));
@@ -320,8 +320,8 @@ public class RobotContainer {
                 // drivebase.setDefaultCommand();
         }
 
-        public void setMotorBrake(boolean brake) {
-                drivebase.setMotorBrake(brake);
+       public void setMotorBrake(boolean brake) {
+            //    drivebase.setMotorBrake(brake);
         }
 
 }

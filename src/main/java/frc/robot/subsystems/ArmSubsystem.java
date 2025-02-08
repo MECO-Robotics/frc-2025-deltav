@@ -55,15 +55,18 @@ public class ArmSubsystem extends SubsystemBase {
     // Constructor
     public ArmSubsystem() {
 
-        SparkMaxConfig config = new SparkMaxConfig();
-        config.smartCurrentLimit(60);
-        config.idleMode(IdleMode.kBrake);
-        config.follow(leftArmMotorOne);
+        SparkMaxConfig lConfig = new SparkMaxConfig();
+        SparkMaxConfig fConfig = new SparkMaxConfig();
+        SparkMaxConfig rConfig = new SparkMaxConfig();
+        lConfig.smartCurrentLimit(60).idleMode(IdleMode.kBrake).inverted(false).disableFollowerMode();
+        fConfig.smartCurrentLimit(60).idleMode(IdleMode.kBrake).follow(leftArmMotorOne, false);
+        rConfig.smartCurrentLimit(60).idleMode(IdleMode.kBrake).follow(leftArmMotorOne, true);
+
         
-        leftArmMotorOne.configure(config, null, null);
-        leftArmMotorTwo.configure(config, null, null);
-        rightArmMotorOne.configure(config, null, null);
-        rightArmMotorTwo.configure(config, null, null);
+        leftArmMotorOne.configure(lConfig, null, null);
+        leftArmMotorTwo.configure(fConfig, null, null);
+        rightArmMotorOne.configure(rConfig, null, null);
+        rightArmMotorTwo.configure(rConfig, null, null);
 
         
         //armEncoder.setPositionOffset(Constants.Arm.horizontalArmOffset);
