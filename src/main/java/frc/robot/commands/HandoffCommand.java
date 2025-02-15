@@ -50,7 +50,7 @@ public class HandoffCommand extends Command {
 
         //actual handoff
         if (indexer.isNoteAquired()) {
-            indexer.setIndexingVoltage(-6);
+            //indexer.setIndexingVoltage(-6);
             intake.setIntakeVoltage(0);
             reversing = true;
             SmartDashboard.putBoolean("Is Handoff Command Reversing?", true);

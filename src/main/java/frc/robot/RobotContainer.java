@@ -219,6 +219,9 @@ public class RobotContainer {
                 // Pilot Controls
                 // ----------------------------
                 pilotCommandController.b().whileTrue(new NoAutomationIntakieCommand(intakeSubsystem, () -> -12));
+                
+                
+                // Eject note
                 pilotCommandController.rightBumper()
                                 .whileTrue(
                                                 new ParallelCommandGroup(
@@ -229,11 +232,13 @@ public class RobotContainer {
                 // (indexingSubsystem, intakeSubsystem, led,
                 // pilotController, coPilotController),
                 // new FlashOnceCommand(led, Color.kGreen))
-                pilotCommandController.leftBumper()
-                                .whileTrue(new SequentialCommandGroup(
-                                                new HandoffCommandReverse(indexingSubsystem, intakeSubsystem, led,
-                                                                pilotController, coPilotController),
-                                                new FlashOnceCommand(led, Color.kGreen)));
+
+                // Intake from source
+                //  pilotCommandController.leftBumper()
+                //                 .whileTrue(new SequentialCommandGroup(
+                //                                 new HandoffCommandReverse(indexingSubsystem, intakeSubsystem, led,
+                //                                                 pilotController, coPilotController),
+                //                                 new FlashOnceCommand(led, Color.kGreen)));
 
                 pilotCommandController.leftBumper().onTrue(new HandoffCommand(indexingSubsystem, intakeSubsystem, led));
 
